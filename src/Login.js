@@ -4,8 +4,9 @@ import {userContext} from './Useraccount';
 import {AuthenticationDetails, CognitoUser} from 'amazon-cognito-identity-js';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Signup from './Signup';
+import UserStatus from './UserStatus';
 
-const {isLoggedin} = useContext(userContext);
+const {isLoggedIn} = useContext(userContext);
 
 export default () => {
     const [email, setEmail] = useState('');
@@ -15,35 +16,15 @@ export default () => {
     const onSubmit = (event) =>{
         event.preventDefault();
         
-        const newUser = new CognitoUser({
-            Username: email,
-            Pool: Pool
-        });
-
-        const newAuthInfo = new AuthenticationDetails({
-            Username: email,
-            Password: password
-        });
-
-        newUser.authenticateUser(newAuthInfo, {
-            onSuccess: (data) => {
-                console.log('Entered onSuccess:',data); 
-                setMessage(data);
-            },
-            newPasswordRequired: (data) => {
-                console.log('Entered newPasswordRequired',data);
-                setMessage(data);
-            },
-            onFailure: (data) => {
-                console.error('Entered onFailure:',data); 
-                setMessage(data);
-            }   
-        });
+        isLoggedIn(email, password)
+        .then((data) => setMessage(data))
+        .catch((err) => setMessage(err));
     };
 
     return (
         <div>
             <h1>ToDoList</h1>
+            <UserStatus/>
             <form onSubmit={onSubmit}>
                 <input 
                     value={email}

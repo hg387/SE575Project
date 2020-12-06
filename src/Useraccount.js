@@ -4,6 +4,33 @@ import Pool from './Pool';
 export const userContext = createContext();
 
 export const User = (props) => {
+    const signout = () =>{
+        const currentUser = Pool.getCurrentUser();
+
+        if (currentUser){
+            currentUser.signOut();
+        }
+    }
+    const UserSession = async() =>{
+        await new Promise((resolve, reject) => {
+            const currentUser = Pool.getCurrentUser();
+    
+            if (currentUser){
+                currentUser.getSession((err, session) => {
+                    if (session){
+                        resolve(session);
+                    }
+                    else{
+                        reject();
+                    }
+                })
+            }
+            else{
+                reject();
+            }
+        });
+    }
+
     const isLoggedIn = async (Username, Password) =>{
         await new Promise((resolve, reject) => {
             const newUser = new CognitoUser({
@@ -36,7 +63,7 @@ export const User = (props) => {
 
     return(
         <userContext.Provider value={{
-            isLoggedIn
+            isLoggedIn, UserSession, signout
         }}>
             {props.children}
         </userContext.Provider>
