@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Login from './Login';
 import Signup from './Signup';
+import Dashboard from './Dashboard';
 
 // To be implemented the actual app
 // making the route available for the app
@@ -18,6 +19,7 @@ ReactDOM.render(
       <User>
         <Route exact path='/' component={Login}/>
         <Route exact path='/Signup' component={Signup}/>
+        <Dashboard/>
       </User>
     </>
   </BrowserRouter>,

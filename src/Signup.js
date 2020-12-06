@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Pool from './Pool';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+import {BrowserRouter, Route, Link, useHistory} from 'react-router-dom';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 
 export default () => {
