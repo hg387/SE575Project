@@ -14,12 +14,12 @@ import Signup from './Signup';
 
 ReactDOM.render(
   <BrowserRouter>
-    <React.StrictMode>
+    <>
       <User>
         <Route exact path='/' component={Login}/>
         <Route exact path='/Signup' component={Signup}/>
       </User>
-    </React.StrictMode>
+    </>
   </BrowserRouter>,
   document.getElementById('root')
 );

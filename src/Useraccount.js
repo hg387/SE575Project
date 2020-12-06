@@ -1,14 +1,17 @@
 import React, {useState, createContext} from 'react';
 import Pool from './Pool';
+import {AuthenticationDetails, CognitoUser} from 'amazon-cognito-identity-js';
 
 export const userContext = createContext();
 
 export const User = (props) => {
-    const signout = () =>{
+    const signout = (onSignOut, setLevel) =>{
         const currentUser = Pool.getCurrentUser();
 
         if (currentUser){
             currentUser.signOut();
+            onSignOut("Signed Out Successfully");
+            setLevel(false);
         }
     }
     const UserSession = async() =>{

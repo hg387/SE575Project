@@ -2,11 +2,11 @@ import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import React, {useState, useContext, useEffect} from 'react';
 import {userContext} from './Useraccount';
 
-const {UserSession, signout} = useContext(userContext);
 
-const UserStatus = ({onClickDashBoard}) =>{
+
+const UserStatus = ({onClickDashBoard, onSignOut}) =>{
     const [level, setLevel] = useState(false);
-
+    const {UserSession, signout} = useContext(userContext);
     useEffect(()=>{
         UserSession()
         .then((session) => {
@@ -19,7 +19,7 @@ const UserStatus = ({onClickDashBoard}) =>{
         <div>
             {level ? (<div>
                 Your are already logged in
-                <button onClick={signout}>Sign Out</button>
+                <button onClick={()=>{signout(onSignOut, setLevel)}}>Sign Out</button>
                 <button onClick={onClickDashBoard}>Dashboard</button>
                 </div>) : "Please Login/Signup below"}
         </div>

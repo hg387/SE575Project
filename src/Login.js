@@ -6,25 +6,29 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Signup from './Signup';
 import UserStatus from './UserStatus';
 
-const {isLoggedIn} = useContext(userContext);
+
+
+const createDashboard = () =>{
+    <></>
+}
 
 export default () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
-
+    const [mss, setMss] = useState('');
+    const {isLoggedIn} = useContext(userContext);
     const onSubmit = (event) =>{
         event.preventDefault();
         
         isLoggedIn(email, password)
-        .then((data) => setMessage(data))
-        .catch((err) => setMessage(err));
+        .then((data) => {console.log(data);setMss("Logged in Successfully")})
+        .catch((err) => console.error(err));
     };
 
     return (
         <div>
             <h1>ToDoList</h1>
-            <UserStatus/>
+            <UserStatus onSignOut={setMss}/>
             <form onSubmit={onSubmit}>
                 <input 
                     value={email}
@@ -34,10 +38,10 @@ export default () => {
                     value={password}
                     onChange={(event) => {setPassword(event.target.value)}}
                 />
-                <button type='submit'>Login</button>
+                <button disabled={!(email.length > 0 && password.length > 0)} type='submit'>Login</button>
             </form>
             <Link to={"/Signup"}>Not a user, Click here to Signup</Link>
-            <p>{message}</p>
+            <p>{mss}</p>
         </div>    
     );
 }
