@@ -31,6 +31,15 @@ const Dashboard = ({email}) =>{
             
         }
     }, [user_id]);
+    
+    const loadTasks = () => {
+        (async () => {
+            const fetchedPosts = await getTasks();
+            
+            setT([...fetchedPosts]);
+           
+          })();
+    }
 
     const getTasks = async () => {
         let data = { user_id: user_id };
@@ -71,6 +80,7 @@ const Dashboard = ({email}) =>{
               }
             });
     };
+
     if (vis) return(<div>Pending</div>)
     return(
         <>
@@ -81,9 +91,10 @@ const Dashboard = ({email}) =>{
                 tasks.length > 0 ? tasks.map((t) => {
                      return(<TaskList 
                             key={t.task_id}
+                            task_id={t.task_id}
                             task_name={t.task_name} 
                             task_description={t.task_description} 
-                            completed={t.completed}/>
+                            completed={t.completed} loadTasks={loadTasks}/>
                 )}) : <div>No Tasks</div>
             }
             <button onClick={()=>{setEmptyTask(true);}}>Add Task</button>
