@@ -19,7 +19,6 @@ ReactDOM.render(
       <User>
         <Route exact path='/' component={Login}/>
         <Route exact path='/Signup' component={Signup}/>
-        <Dashboard/>
       </User>
     </>
   </BrowserRouter>,

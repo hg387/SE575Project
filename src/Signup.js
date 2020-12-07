@@ -18,10 +18,34 @@ export default () => {
             }  
             else{
                 console.log(data);
+                storeUser();
                 setMss("Sign Up Successful");
             }
         });
     }
+
+    const storeUser = async () => {
+        let data = { first_name: fullName, 
+                    last_name: "null",
+                    email: email,
+                    bio:"null" 
+                };
+    
+        await fetch(
+          "https://381w41yjli.execute-api.us-east-2.amazonaws.com/staging/todo-insert-user",
+          {
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify(data)
+          }
+        )
+          .then((r) => r.json())
+          .then((res) => {
+              if (res){
+                console.log(res);
+              }
+            });
+    };
 
     const isEnabled = email.length > 0 && password.length > 0 && fullName.length > 0;
     return (
@@ -37,6 +61,7 @@ export default () => {
                     onChange={(event) => {setEmail(event.target.value)}}
                 />
                 <input 
+                    type = "password"
                     value={password}
                     onChange={(event) => {setPassword(event.target.value)}}
                 />
