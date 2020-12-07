@@ -54,14 +54,17 @@ export default () => {
             <form onSubmit={onSubmit}>
                 <input 
                     value={fullName}
+                    placeholder="Enter Name"
                     onChange={(event) => {setFullName(event.target.value)}}
                 />
                 <input 
                     value={email}
+                    placeholder="Enter Email"
                     onChange={(event) => {setEmail(event.target.value)}}
                 />
                 <input 
                     type = "password"
+                    placeholder="Enter Password"
                     value={password}
                     onChange={(event) => {setPassword(event.target.value)}}
                 />

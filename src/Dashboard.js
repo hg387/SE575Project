@@ -91,6 +91,7 @@ const Dashboard = ({email}) =>{
                 tasks.length > 0 ? tasks.map((t) => {
                      return(<TaskList 
                             key={t.task_id}
+                            user_id={user_id}
                             task_id={t.task_id}
                             task_name={t.task_name} 
                             task_description={t.task_description} 
