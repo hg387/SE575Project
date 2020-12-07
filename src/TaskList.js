@@ -28,7 +28,7 @@ const TaskList = ({task_name,task_description, completed, task_id, loadTasks}) =
                 <li>Task Name: {task_name}</li>
                 <li>Task Description: {task_description}</li>
                 <li>Completed: {completed}</li>
-                {/* <button onClick={deleteTask}>-</button> */}
+                <button onClick={deleteTask}>-</button>
             </ul>
         </div>
     )

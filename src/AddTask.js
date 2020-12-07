@@ -11,7 +11,7 @@ const AddTask = ({getTasks, setT, Task, userID}) => {
             task_description: task_description,
             created_by: userID,
             weight_id: "null",
-            completed: completed,
+            completed: completed
             
         };
 
