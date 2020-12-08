@@ -1,13 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {User} from './Useraccount';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
+import Login from './Login';
+import Signup from './Signup';
+import Dashboard from './Dashboard';
+
+// To be implemented the actual app
+// making the route available for the app
+// Forgot Password has to be implemented
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <>
+      <User>
+        <Route exact path='/' component={Login}/>
+        <Route exact path='/Signup' component={Signup}/>
+      </User>
+    </>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
